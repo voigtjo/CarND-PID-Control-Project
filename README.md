@@ -2,6 +2,18 @@
 Self-Driving Car Engineer Nanodegree Program
 
 ---
+## Reflection for the rubric points
+
+PID stands for proportional-integral derivative controller and is used in many applications for continuously modulated control. 
+
+### 1. Proportional (Present):
+Poportional can be described as reaction to the "present" situation and adjust the steering angle according to the current given error rate. This does not include the past and future states and leads to an oscillating behavior. The proportional gain contributes a control output to the steering angle of the form  `-K_p cte` with a positive constant `K_p`. 
+
+### 2. Derivative (Future):
+The derivative value is used to predict the error value of the future and compensate for overshooting (oscillating). The derivative gain contributes a control output of the form `-K_d d/dt cte`, with a positive constant `K_d`.
+
+### 3. Integral (Past):
+The integral term sums up the error rate cver time and is used to detect and compensate for relatively small error values. The corresponding contribution to the steering angle is given by `-K_i sum(cte)`.
 
 ## Dependencies
 
