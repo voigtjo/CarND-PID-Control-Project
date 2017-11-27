@@ -15,6 +15,14 @@ The derivative value is used to predict the error value of the future and compen
 ### 3. Integral (Past):
 The integral term sums up the error rate cver time and is used to detect and compensate for relatively small error values. The corresponding contribution to the steering angle is given by `-K_i sum(cte)`.
 
+## Manual tuning PID parameters
+1. pid.Init(1.0,0.0,0.0): start ok, but oscillating before the first curve -> increase kd
+2. pid.Init(1.0,0.0,1.0): + slight improvement, but didn't have the desired effect -> increase kp
+3. pid.Init(5.0,0.0,1.0): - worse than before -> decrease kp
+4. pid.Init(0.2,0.0,1.0): + strong improvement, but oscillating too strong after a while -> increase kd
+5. pid.Init(0.2,0.0,5.0): +++ The vehicle successfully drive a lap around the track, but could be smoother, try to optimize -> decrease kd
+6. pid.Init(0.2,0.0,2.5): ! final parameters
+
 ## Dependencies
 
 * cmake >= 3.5

@@ -34,6 +34,13 @@ int main()
 
   PID pid;
   // TODO: Initialize the pid variable.
+  //Manual tuning PID parameters
+  //1. pid.Init(1.0,0.0,0.0): start ok, but oscillating before the first curve -> increase kd
+  //2. pid.Init(1.0,0.0,1.0): + slight improvement, but didn't have the desired effect -> increase kp
+  //3. pid.Init(5.0,0.0,1.0): - worse than before -> decrease kp
+  //4. pid.Init(0.2,0.0,1.0): + strong improvement, but oscillating too strong after a while -> increase kd
+  //5. pid.Init(0.2,0.0,5.0): +++ The vehicle successfully drive a lap around the track, but could be smoother, try to optimize -> decrease kd
+  //6. pid.Init(0.2,0.0,2.5): ! final parameters
   pid.Init(0.2,0.0,2.5);
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
@@ -106,7 +113,7 @@ int main()
   int port = 4567;
   if (h.listen(port))
   {
-    std::cout << "Listening to port " << port << std::endl;
+    std::cout << "Hello: Listening to port " << port << std::endl;
   }
   else
   {
